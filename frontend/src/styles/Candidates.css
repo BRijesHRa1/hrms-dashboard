@@ -744,4 +744,31 @@ td {
   bottom: 100%;
   margin-top: 0;
   margin-bottom: 4px;
+}
+
+/* Add these styles at the end of the file */
+
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 16px;
+  color: #666;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.no-candidates {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-style: italic;
 } 

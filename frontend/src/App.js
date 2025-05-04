@@ -17,10 +17,10 @@ const ProtectedRoute = ({ children }) => {
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       <Route path="/ui-components" element={
         <ProtectedRoute>
           <UIComponents />
@@ -46,7 +46,7 @@ function AppRoutes() {
           <Leaves />
         </ProtectedRoute>
       } />
-    </Routes>
+      </Routes>
   );
 }
 
@@ -55,7 +55,7 @@ function App() {
     <AuthProvider>
       <Router>
         <AppRoutes />
-      </Router>
+    </Router>
     </AuthProvider>
   );
 }

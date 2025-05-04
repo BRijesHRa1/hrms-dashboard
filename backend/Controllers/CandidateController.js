@@ -19,8 +19,9 @@ exports.addCandidate = async (req, res) => {
 
 exports.getAllCandidates = async (req, res) => {
   try {
-    const list = await Candidate.find().sort({ createdAt: -1 });
-    res.json({ success: true, data: list });
+    const candidates = await Candidate.find().sort({ createdAt: -1 });
+    // Return the candidates array directly
+    res.json(candidates);
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: 'Server error' });

@@ -1,59 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Candidates.css';
 import { Sidebar, ContentHeader } from '../components/common';
+import { useAuth } from '../context/AuthContext';
 
 const Candidates = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [positionFilter, setPositionFilter] = useState('');
-  const [candidates, setCandidates] = useState([
-    {
-      id: '01',
-      name: 'Jane Copper',
-      email: 'jane.copper@example.com',
-      phone: '(704) 555-0127',
-      position: 'Designer Intern',
-      status: 'New',
-      experience: '0'
-    },
-    {
-      id: '02',
-      name: 'Janney Wilson',
-      email: 'janney.wilson@example.com',
-      phone: '(252) 555-0126',
-      position: 'Senior Developer',
-      status: 'New',
-      experience: '1+'
-    },
-    {
-      id: '03',
-      name: 'Guy Hawkins',
-      email: 'kenzi.lawson@example.com',
-      phone: '(907) 555-0101',
-      position: 'Human Resource',
-      status: 'New',
-      experience: '10+'
-    },
-    {
-      id: '04',
-      name: 'Arlene McCoy',
-      email: 'arlene.mccoy@example.com',
-      phone: '(302) 555-0107',
-      position: 'Full Time Designer',
-      status: 'Selected',
-      experience: '5+'
-    },
-    {
-      id: '05',
-      name: 'Leslie Alexander',
-      email: 'willie.jennings@example.com',
-      phone: '(207) 555-0119',
-      position: 'Full Time Developer',
-      status: 'Rejected',
-      experience: '0'
-    }
-  ]);
+  const [candidates, setCandidates] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
@@ -78,6 +37,52 @@ const Candidates = () => {
   const [editingStatusId, setEditingStatusId] = useState(null);
   const [dropdownPosition, setDropdownPosition] = useState('bottom');
   
+  useEffect(() => {
+    // Redirect if not authenticated
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+
+    // Fetch candidates from backend API
+    const fetchCandidates = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('http://localhost:8081/candidates', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch candidates');
+        }
+        
+        const data = await response.json();
+        
+        // Transform the data to match our component's expected format
+        const formattedCandidates = data.map(candidate => ({
+          id: candidate._id,
+          name: candidate.name,
+          email: candidate.email,
+          phone: candidate.phoneNumber,
+          position: candidate.position,
+          status: candidate.status,
+          experience: candidate.experience > 0 ? `${candidate.experience}+` : '0'
+        }));
+        
+        setCandidates(formattedCandidates);
+      } catch (err) {
+        console.error('Error fetching candidates:', err);
+        setError('Failed to load candidates. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCandidates();
+  }, [isAuthenticated, navigate]);
+
   const handleActionClick = (id, e) => {
     if (activeDropdown === id) {
       setActiveDropdown(null);
@@ -301,72 +306,78 @@ const Candidates = () => {
         </div>
 
         <div className="candidates-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Sr no.</th>
-                <th>Candidates Name</th>
-                <th>Email Address</th>
-                <th>Phone Number</th>
-                <th>Position</th>
-                <th>Status</th>
-                <th>Experience</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {candidates.map((candidate) => (
-                <tr key={candidate.id}>
-                  <td>{candidate.id}</td>
-                  <td>{candidate.name}</td>
-                  <td>{candidate.email}</td>
-                  <td>{candidate.phone}</td>
-                  <td>{candidate.position}</td>
-                  <td style={{ position: 'relative' }}>
-                    {editingStatusId === candidate.id ? (
-                      <div className="status-dropdown status-dropdown-table">
-                        {statusOptions.map((status, index) => (
-                          <div 
-                            key={index}
-                            className={`status-dropdown-item ${status === candidate.status ? 'active' : ''}`}
-                            onClick={() => handleStatusChange(candidate.id, status)}
-                          >
-                            {status}
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div 
-                        className={`status-badge ${getStatusClass(candidate.status)}`}
-                        onClick={() => setEditingStatusId(candidate.id)}
-                      >
-                        {candidate.status}
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    )}
-                  </td>
-                  <td>{candidate.experience}</td>
-                  <td style={{ position: 'relative' }}>
-                    <button className="action-button" onClick={(e) => handleActionClick(candidate.id, e)}>
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 10.8333C10.4603 10.8333 10.8333 10.4603 10.8333 10C10.8333 9.53976 10.4603 9.16667 10 9.16667C9.53976 9.16667 9.16667 9.53976 9.16667 10C9.16667 10.4603 9.53976 10.8333 10 10.8333Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M15.8333 10.8333C16.2936 10.8333 16.6667 10.4603 16.6667 10C16.6667 9.53976 16.2936 9.16667 15.8333 9.16667C15.3731 9.16667 15 9.53976 15 10C15 10.4603 15.3731 10.8333 15.8333 10.8333Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M4.16669 10.8333C4.62692 10.8333 5.00002 10.4603 5.00002 10C5.00002 9.53976 4.62692 9.16667 4.16669 9.16667C3.70645 9.16667 3.33336 9.53976 3.33336 10C3.33336 10.4603 3.70645 10.8333 4.16669 10.8333Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                    {activeDropdown === candidate.id && (
-                      <div className={`action-dropdown ${dropdownPosition === 'top' ? 'action-dropdown-top' : ''}`}>
-                        <button>Download Resume</button>
-                        <button>Delete Candidate</button>
-                      </div>
-                    )}
-                  </td>
+          {error && <div className="error-message">{error}</div>}
+          
+          {loading ? (
+            <div className="loading-indicator">Loading candidates...</div>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>Sr no.</th>
+                  <th>Candidates Name</th>
+                  <th>Email Address</th>
+                  <th>Phone Number</th>
+                  <th>Position</th>
+                  <th>Status</th>
+                  <th>Experience</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {candidates.map((candidate) => (
+                  <tr key={candidate.id}>
+                    <td>{candidate.id}</td>
+                    <td>{candidate.name}</td>
+                    <td>{candidate.email}</td>
+                    <td>{candidate.phone}</td>
+                    <td>{candidate.position}</td>
+                    <td style={{ position: 'relative' }}>
+                      {editingStatusId === candidate.id ? (
+                        <div className="status-dropdown status-dropdown-table">
+                          {statusOptions.map((status, index) => (
+                            <div 
+                              key={index}
+                              className={`status-dropdown-item ${status === candidate.status ? 'active' : ''}`}
+                              onClick={() => handleStatusChange(candidate.id, status)}
+                            >
+                              {status}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div 
+                          className={`status-badge ${getStatusClass(candidate.status)}`}
+                          onClick={() => setEditingStatusId(candidate.id)}
+                        >
+                          {candidate.status}
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                      )}
+                    </td>
+                    <td>{candidate.experience}</td>
+                    <td style={{ position: 'relative' }}>
+                      <button className="action-button" onClick={(e) => handleActionClick(candidate.id, e)}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10 10.8333C10.4603 10.8333 10.8333 10.4603 10.8333 10C10.8333 9.53976 10.4603 9.16667 10 9.16667C9.53976 9.16667 9.16667 9.53976 9.16667 10C9.16667 10.4603 9.53976 10.8333 10 10.8333Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M15.8333 10.8333C16.2936 10.8333 16.6667 10.4603 16.6667 10C16.6667 9.53976 16.2936 9.16667 15.8333 9.16667C15.3731 9.16667 15 9.53976 15 10C15 10.4603 15.3731 10.8333 15.8333 10.8333Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M4.16669 10.8333C4.62692 10.8333 5.00002 10.4603 5.00002 10C5.00002 9.53976 4.62692 9.16667 4.16669 9.16667C3.70645 9.16667 3.33336 9.53976 3.33336 10C3.33336 10.4603 3.70645 10.8333 4.16669 10.8333Z" stroke="#4B5563" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      {activeDropdown === candidate.id && (
+                        <div className={`action-dropdown ${dropdownPosition === 'top' ? 'action-dropdown-top' : ''}`}>
+                          <button>Download Resume</button>
+                          <button>Delete Candidate</button>
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
       
