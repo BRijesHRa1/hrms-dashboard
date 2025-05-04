@@ -1,0 +1,506 @@
+/* Attendance Page Layout */
+.attendance-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #F9FAFB;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 280px;
+  height: 1024px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  overflow-y: auto;
+}
+
+/* Logo Styling */
+.logo-container {
+  padding: 0 24px 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #5E0C9E;
+}
+
+/* Search Bar */
+.search-container {
+  padding: 0 24px 24px;
+}
+
+.search-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input svg {
+  position: absolute;
+  left: 10px;
+  color: #9CA3AF;
+}
+
+.search-input input {
+  width: 100%;
+  padding: 10px 10px 10px 36px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #4B5563;
+}
+
+.search-input input::placeholder {
+  color: #9CA3AF;
+}
+
+.search-input input:focus {
+  outline: none;
+  border-color: #5E0C9E;
+}
+
+/* Navigation Section */
+.nav-section {
+  margin-bottom: 24px;
+}
+
+.section-label {
+  padding: 0 24px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 12px;
+  cursor: pointer;
+  color: #6B7280;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: #F3F4F6;
+  color: #5E0C9E;
+}
+
+.nav-item.active {
+  background-color: #F3F4F6;
+  color: #5E0C9E;
+  border-left: 3px solid #5E0C9E;
+  padding-left: 21px; /* 24px - 3px border */
+}
+
+.nav-item svg {
+  color: inherit;
+}
+
+.nav-item span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  padding: 24px;
+  background-color: #F9FAFB;
+}
+
+/* Content Header */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.content-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notification-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4B5563;
+  width: 32px;
+  height: 32px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 56px;
+  height: 32px;
+  position: relative;
+}
+
+.profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dropdown-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 200px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10.1px 0px #12121233;
+  z-index: 100;
+  overflow: hidden;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.profile-dropdown-item {
+  width: 184px;
+  height: 38px;
+  padding: 8px 20px;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-dropdown-item:hover {
+  background-color: #F9FAFB;
+  color: #5E0C9E;
+  font-weight: 500;
+}
+
+/* Filter Section */
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Status and Position Filter Container */
+.filter-group:first-child {
+  width: 180px;
+  height: 38px;
+}
+
+/* Dropdown Styling */
+.dropdown-filter {
+  position: relative;
+}
+
+/* Dropdown Button */
+.dropdown-button {
+  width: 180px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #4B5563;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Status Dropdown */
+.status-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 180px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  overflow: hidden;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.status-dropdown-item {
+  background-color: #FFFFFF;
+  color: #111827;
+  padding: 10px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.status-dropdown-item:hover {
+  background-color: #F9FAFB;
+  color: #5E0C9E;
+}
+
+.search-input.large {
+  width: 300px;
+}
+
+/* Attendance Table */
+.attendance-table {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  overflow: visible;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: visible;
+}
+
+thead {
+  background-color: #4C0982;
+  color: #ffffff;
+}
+
+th {
+  text-align: left;
+  padding: 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #E5E7EB;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+td {
+  padding: 16px;
+  color: #4B5563;
+  font-size: 14px;
+}
+
+/* Task Cell with long text */
+.task-cell {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+/* Employee Profile Picture in Table */
+.employee-profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.employee-profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Status Badge Styling */
+.status-badge-container {
+  position: relative;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  width: 140px;
+}
+
+.status-badge.present {
+  color: #059669;
+  background-color: #D1FAE5;
+}
+
+.status-badge.absent {
+  color: #EF4444;
+  background-color: #FEE2E2;
+}
+
+.status-badge.medical {
+  color: #D97706;
+  background-color: #FEF3C7;
+}
+
+.status-badge.work {
+  color: #2563EB;
+  background-color: #DBEAFE;
+}
+
+.status-badge svg {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+}
+
+/* Status Options Dropdown */
+.status-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  margin-top: 4px;
+  display: none;
+  z-index: 10;
+  width: 140px;
+}
+
+.status-badge-container:hover .status-options {
+  display: block;
+}
+
+.status-option {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.status-option:hover {
+  background-color: #F3F4F6;
+}
+
+.status-option.active {
+  background-color: #F9FAFB;
+  font-weight: 500;
+}
+
+.status-option:nth-child(1) {
+  color: #059669;
+}
+
+.status-option:nth-child(2) {
+  color: #EF4444;
+}
+
+.status-option:nth-child(3) {
+  color: #D97706;
+}
+
+.status-option:nth-child(4) {
+  color: #2563EB;
+}
+
+/* Action Button */
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4B5563;
+  position: relative;
+}
+
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

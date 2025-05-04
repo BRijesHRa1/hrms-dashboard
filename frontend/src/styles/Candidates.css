@@ -1,0 +1,747 @@
+/* Candidates Page Layout */
+.candidates-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #F9FAFB;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 280px;
+  height: 1024px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  overflow-y: auto;
+}
+
+/* Logo Styling */
+.logo-container {
+  padding: 0 24px 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #5E0C9E;
+}
+
+/* Search Bar */
+.search-container {
+  padding: 0 24px 24px;
+}
+
+.search-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input svg {
+  position: absolute;
+  left: 10px;
+  color: #9CA3AF;
+}
+
+.search-input input {
+  width: 100%;
+  padding: 10px 10px 10px 36px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #4B5563;
+}
+
+.search-input input::placeholder {
+  color: #9CA3AF;
+}
+
+.search-input input:focus {
+  outline: none;
+  border-color: #5E0C9E;
+}
+
+/* Navigation Section */
+.nav-section {
+  margin-bottom: 24px;
+}
+
+.section-label {
+  padding: 0 24px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 12px;
+  cursor: pointer;
+  color: #6B7280;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: #F3F4F6;
+  color: #5E0C9E;
+}
+
+.nav-item.active {
+  background-color: #F3F4F6;
+  color: #5E0C9E;
+  border-left: 3px solid #5E0C9E;
+  padding-left: 21px; /* 24px - 3px border */
+}
+
+.nav-item svg {
+  color: inherit;
+}
+
+.nav-item span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  padding: 24px;
+  background-color: #F9FAFB;
+}
+
+/* Content Header */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.content-header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notification-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4B5563;
+  width: 32px;
+  height: 32px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 56px;
+  height: 32px;
+  position: relative;
+}
+
+.profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dropdown-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* Filter Section */
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Status and Position Filter Container */
+.filter-group:first-child {
+  width: 328px;
+  height: 38px;
+}
+
+/* Dropdown Styling */
+.dropdown-filter {
+  position: relative;
+}
+
+/* Status Button */
+.dropdown-filter:first-child .dropdown-button {
+  width: 132px;
+  height: 38px;
+}
+
+/* Position Button */
+.dropdown-filter:nth-child(2) .dropdown-button {
+  width: 180px;
+  height: 38px;
+}
+
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #D1D5DB;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #4B5563;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Status Dropdown */
+.status-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 132px;
+  height: 238px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10.1px 0px #12121233;
+  z-index: 100;
+  overflow: hidden;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.status-dropdown-item {
+  padding: 10px 12px;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 20px;
+}
+
+.status-dropdown-item:hover {
+  background-color: #F9FAFB;
+  color: #5E0C9E;
+}
+
+/* Search Input Large */
+.search-input.large {
+  width: 300px;
+}
+
+.add-button {
+  background-color: #5E0C9E;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-button:hover {
+  background-color: #4C0982;
+}
+
+/* Candidates Table */
+.candidates-table {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  overflow: visible;
+  position: relative;
+  margin-bottom: 40px; /* Added space for any bottom row dropdowns */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: visible;
+}
+
+thead {
+  background-color: #4C0982;
+  color: #ffffff;
+}
+
+th {
+  text-align: left;
+  padding: 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #E5E7EB;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+td {
+  padding: 16px;
+  color: #4B5563;
+  font-size: 14px;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.status-new {
+  background-color: #EFF6FF;
+  color: #1E40AF;
+}
+
+.status-selected {
+  background-color: #ECFDF5;
+  color: #065F46;
+}
+
+.status-rejected {
+  background-color: #FEF2F2;
+  color: #B91C1C;
+}
+
+/* Action Button */
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4B5563;
+  position: relative;
+}
+
+.action-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  width: 200px;
+  margin-top: 4px;
+  padding: 8px 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.action-dropdown button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.action-dropdown button:hover {
+  background-color: #F9FAFB;
+  color: #5E0C9E;
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 200px;
+  height: 146px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10.1px 0px #12121233;
+  z-index: 100;
+  overflow: hidden;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-dropdown-item {
+  width: 184px;
+  height: 38px;
+  padding: 8px 20px;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-dropdown-item:hover {
+  background-color: #F9FAFB;
+  color: #5E0C9E;
+  font-weight: 500;
+}
+
+/* Position Dropdown */
+.position-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 180px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10.1px 0px #12121233;
+  z-index: 100;
+  overflow: hidden;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.position-dropdown-item {
+  padding: 10px 12px;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 20px;
+}
+
+.position-dropdown-item:hover {
+  background-color: #F9FAFB;
+  color: #5E0C9E;
+}
+
+/* Add Candidate Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.add-candidate-modal {
+  width: 1080px;
+  height: 498px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+  padding: 24px;
+  overflow-y: auto;
+  border: 0px solid #E5E5E5;
+  margin: 0 auto;
+}
+
+.add-candidate-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #5E0C9E;
+  margin: -24px -24px 24px -24px;
+  padding: 16px 24px;
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+}
+
+.modal-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+}
+
+.form-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #4B5563;
+  height: 42px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #5E0C9E;
+}
+
+.resume-upload {
+  position: relative;
+  height: 42px;
+  border: 1px dashed #D1D5DB;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resume-upload input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.upload-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5E0C9E;
+}
+
+.upload-icon::after {
+  content: "Upload Resume";
+  font-size: 14px;
+  color: #5E0C9E;
+}
+
+.required {
+  color: #EF4444;
+  margin-left: 2px;
+}
+
+.terms-row {
+  margin-top: 16px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-top: 2px;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  color: #4B5563;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.save-btn {
+  background-color: #E5E5E5;
+  color: #4B5563;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 120px;
+  transition: all 0.2s;
+}
+
+.save-btn:hover {
+  background-color: #D1D5DB;
+}
+
+/* Status Badge in Table */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  width: fit-content;
+  cursor: pointer;
+}
+
+/* Status Dropdown in Table */
+.status-dropdown-table {
+  position: absolute;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+  width: 142px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.status-dropdown-table .status-dropdown-item {
+  background-color: #FFFFFF;
+  color: #111827;
+  padding: 10px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+}
+
+.status-dropdown-table .status-dropdown-item:first-child {
+  margin-top: 2px;
+}
+
+.status-dropdown-table .status-dropdown-item:last-child {
+  margin-bottom: 2px;
+}
+
+.status-dropdown-table .status-dropdown-item:hover,
+.status-dropdown-item.active {
+  background-color: #F9FAFB;
+  color: #5E0C9E;
+  font-weight: 500;
+}
+
+/* Status Colors */
+.status-scheduled {
+  background-color: #FFF7EA;
+  color: #7D4F03;
+  border: 1px solid #BD8C44;
+}
+
+.status-ongoing {
+  background-color: #F0F9FF;
+  color: #03609C;
+  border: 1px solid #5DA5DB;
+}
+
+/* Action Dropdown Top */
+.action-dropdown-top {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 4px;
+} 
